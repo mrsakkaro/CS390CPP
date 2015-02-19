@@ -338,7 +338,30 @@ bool Drawing::isAnySelectedFigureCloseTo(int x, int y)
 	return false;
 }
 
-//void Drawing::
+void Drawing::CopyToClipBoard(CView* cview){
+	for (unsigned i = 0; i < this->figures.size(); i++) {
+		if (figures.at(i)->isSelected()) {
+			this->clipboard.push_back(figures.at(i));
+			fprintf(stderr, "Copied!\n");
+		}
+	}
+}
+
+void Drawing::PasteFromClipBoard(CView* cview){
+	ControlPoint * controlPoint;
+	Figure* f;
+	for (unsigned i = 0; i < this->clipboard.size(); i++) {
+		f = this->clipboard.at(i);
+		if (f->getFigureType == "Line") {
+			Line * l = f->clone();
+
+			
+		}
+		this->figures.push_back(this->clipboard.at(i));
+		fprintf(stderr, "Paste?\n");
+	}
+	cview->RedrawWindow();
+}
 
 // Return the figure selected or unselected that is close to the coordinate (x,y)
 Figure * Drawing::isAnyFigureCloseTo(int x, int y) 

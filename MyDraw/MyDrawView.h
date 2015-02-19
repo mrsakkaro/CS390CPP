@@ -53,6 +53,9 @@ public:
 	afx_msg void OnColorRed();
 	afx_msg void OnColorBlue();
 	afx_msg void OnColorGreen();
+	afx_msg void OnFigureGroup();
+	afx_msg void OnEditCopy();
+	afx_msg void OnEditPaste();
 };
 
 #ifndef _DEBUG  // debug version in MyDrawView.cpp

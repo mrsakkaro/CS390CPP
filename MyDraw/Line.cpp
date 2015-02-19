@@ -32,6 +32,10 @@ Line::Line(int x0, int y0, int x1, int y1, COLORREF currentColor)
 	curColor = currentColor;
 	controlPoints.push_back(new ControlPoint(this, x0,y0));
 	controlPoints.push_back(new ControlPoint(this, x1,y1));
+	xO = x0;
+	xD = x1;
+	yO = y0;
+	yD = y1;
 }
 
 Line::~Line(void)
@@ -65,3 +69,6 @@ bool Line::isCloseTo(int x, int y)
 	return false;
 }
 
+Line* Line::clone() const {
+	return new Line(*this);
+}

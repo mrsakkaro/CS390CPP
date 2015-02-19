@@ -46,6 +46,9 @@ private:
 	// This is the list of all the figures in the drawing.
 	vector<Figure *> figures;
 
+	// This is the list of figures in clipboard
+	vector<Figure *> clipboard;
+
 	// Current Edit mode. When the new line is selected in the Figure menu, the NewLineMode is set here.
 	EditMode editMode;
 
@@ -53,7 +56,7 @@ private:
 	MouseMode previousMouseMode;
 
 	// Selected Figure
-	Figure * selectedFigure;
+	//Figure * selectedFigure;
 
 	// Previous x and y of the mouse
 	int previousX;
@@ -117,5 +120,9 @@ public:
 
 	// Delete All secleted figures
 	void Drawing::deleteSelectdControlPoints(CView * cview);
+
+	void Drawing::CopyToClipBoard(CView* cview);
+
+	void Drawing::PasteFromClipBoard(CView* cview);
 };
 

@@ -57,3 +57,7 @@ bool MyRectangle::isCloseTo(int x, int y)
 
 	return false;
 }
+
+MyRectangle* MyRectangle::clone() const {
+	return new MyRectangle(*this);
+}

@@ -87,3 +87,7 @@ bool MyOval::isCloseTo(int x, int y)
 
 	return false;
 }
+
+MyOval* MyOval::clone() const {
+	return new MyOval(*this);
+}

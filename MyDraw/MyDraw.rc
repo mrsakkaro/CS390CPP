@@ -177,6 +177,7 @@ BEGIN
             MENUITEM "Blue",                        ID_COLOR_BLUE
             MENUITEM "Green",                       ID_COLOR_GREEN
         END
+        MENUITEM "Group",                       ID_FIGURE_GROUP
     END
     POPUP "&Window"
     BEGIN

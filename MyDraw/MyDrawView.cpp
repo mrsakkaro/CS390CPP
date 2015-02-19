@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CMyDrawView, CView)
 	ON_COMMAND(ID_COLOR_GREEN, &CMyDrawView::OnColorGreen)
 	ON_COMMAND(ID_FIGURE_GROUP, &CMyDrawView::OnFigureGroup)
 	ON_COMMAND(ID_EDIT_COPY, &CMyDrawView::OnEditCopy)
+	ON_COMMAND(ID_EDIT_PASTE, &CMyDrawView::OnEditPaste)
 END_MESSAGE_MAP()
 
 // CMyDrawView construction/destruction
@@ -204,5 +205,12 @@ void CMyDrawView::OnFigureGroup()
 void CMyDrawView::OnEditCopy()
 {
 	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.CopyToClipBoard(this);
+}
 
+
+void CMyDrawView::OnEditPaste()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.PasteFromClipBoard(this);
 }

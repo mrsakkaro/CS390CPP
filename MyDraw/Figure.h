@@ -33,6 +33,7 @@ class Figure
 public:
 	// Figure type. You may need to add more types here
 	enum FigureType { Line, Rectangle, Oval, Text };
+	
 
 protected:
 
@@ -48,6 +49,7 @@ public:
 
 	// Constructor and destructor
 	Figure(FigureType figureType);
+	Figure (const Figure & );
 	~Figure(void);
 
 	// Get the list of all control points
@@ -91,5 +93,7 @@ public:
 	// Distance of point (x0,y0) to the line between (x1,y1) and (x2,y2).
 	// If the perpendicular distance is beyond the line segment, it returns a large distance.
 	static double distancePointToLine(double x0, double y0, double x1, double y1, double x2, double y2);
+
+	
 };
 
