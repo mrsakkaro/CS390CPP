@@ -53,7 +53,7 @@ private:
 	MouseMode previousMouseMode;
 
 	// Selected Figure
-	//Figure * selectedFigure;
+	Figure * selectedFigure;
 
 	// Previous x and y of the mouse
 	int previousX;
@@ -114,5 +114,8 @@ public:
 
 	// Value holding the current Color
 	COLORREF currentColor;
+
+	// Delete All secleted figures
+	void Drawing::deleteSelectdControlPoints(CView * cview);
 };
 

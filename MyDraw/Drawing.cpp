@@ -299,6 +299,23 @@ void Drawing::dragSelectedControlPoints( int dx, int dy ) {
 	}
 }
 
+void Drawing::deleteSelectdControlPoints(CView * cview) {
+	Figure * f;
+	std::vector<int>::size_type counter = 0;
+	
+		while (counter < figures.size()) {
+			if (figures[counter]->isSelected()) {
+				f = figures[counter];
+				figures.erase(figures.begin() + counter);
+				delete f;
+			}
+			else {
+				counter++;
+			}
+		}
+		cview->RedrawWindow();
+}
+
 // Select/deselct all figures in the drawing
 void Drawing::selectAll(bool selected)
 {
@@ -320,6 +337,8 @@ bool Drawing::isAnySelectedFigureCloseTo(int x, int y)
 
 	return false;
 }
+
+//void Drawing::
 
 // Return the figure selected or unselected that is close to the coordinate (x,y)
 Figure * Drawing::isAnyFigureCloseTo(int x, int y) 

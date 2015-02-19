@@ -33,6 +33,8 @@ BEGIN_MESSAGE_MAP(CMyDrawView, CView)
 	ON_COMMAND(ID_COLOR_RED, &CMyDrawView::OnColorRed)
 	ON_COMMAND(ID_COLOR_BLUE, &CMyDrawView::OnColorBlue)
 	ON_COMMAND(ID_COLOR_GREEN, &CMyDrawView::OnColorGreen)
+	ON_COMMAND(ID_FIGURE_GROUP, &CMyDrawView::OnFigureGroup)
+	ON_COMMAND(ID_EDIT_COPY, &CMyDrawView::OnEditCopy)
 END_MESSAGE_MAP()
 
 // CMyDrawView construction/destruction
@@ -154,7 +156,7 @@ void CMyDrawView::OnFigureOval()
 void CMyDrawView::OnFigureDelete()
 {
 	CMyDrawDoc* pDoc = GetDocument();
-	pDoc->drawing.setEditMode(Drawing::DeleteMode);
+	pDoc->drawing.deleteSelectdControlPoints(this);
 }
 
 
@@ -189,4 +191,18 @@ void CMyDrawView::OnColorGreen()
 {
 	CMyDrawDoc* pDoc = GetDocument();
 	pDoc->drawing.currentColor = RGB(0, 255, 0);
+}
+
+
+void CMyDrawView::OnFigureGroup()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	//pDoc->drawing.
+}
+
+
+void CMyDrawView::OnEditCopy()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+
 }
