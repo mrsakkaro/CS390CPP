@@ -57,7 +57,7 @@
     <ClCompile Include="MyText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="textInputBox.cpp">
+    <ClCompile Include="textBoxGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -111,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="textInputBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textBoxGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
