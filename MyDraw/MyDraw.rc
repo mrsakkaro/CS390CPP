@@ -179,6 +179,12 @@ BEGIN
         END
         MENUITEM "Group",                       ID_FIGURE_GROUP
     END
+    POPUP "Group"
+    BEGIN
+        MENUITEM "Create",                      ID_GROUP_CREATE
+        MENUITEM "Degroup",                     ID_GROUP_DEGROUP
+        MENUITEM "Delete Group",                ID_GROUP_DELETEGROUP
+    END
     POPUP "&Window"
     BEGIN
         MENUITEM "&New Window",                 ID_WINDOW_NEW

@@ -24,6 +24,7 @@ MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
 #include "Line.h"
 #include "MyRectangle.h"
 #include "MyOval.h"
+#include "Group.h"
 
 // Constructor/Destructor
 Drawing::Drawing(void)
@@ -338,12 +339,105 @@ bool Drawing::isAnySelectedFigureCloseTo(int x, int y)
 	return false;
 }
 
-void Drawing::CopyToClipBoard(CView* cview){
+void Drawing::createGroup(CView* cview) {
+	vector<Figure *> toBeGrouped;
+
 	for (unsigned i = 0; i < this->figures.size(); i++) {
 		if (figures.at(i)->isSelected()) {
-			this->clipboard.push_back(figures.at(i));
-			fprintf(stderr, "Copied!\n");
+			toBeGrouped.push_back(figures.at(i)->clone());
 		}
+	}
+	
+	deleteSelectdControlPoints(cview);
+	figures.push_back(new Group(toBeGrouped));
+	// Redraw window. This will call the draw method.
+	cview->RedrawWindow();
+}
+
+void Drawing::unGroup(CView* cview) {
+	vector <Figure *> tobePopped;
+	std::vector<int>::size_type count = 0;
+	while (count < figures.size()) {
+		if (figures.at(count)->isSelected() && figures.at(count)->getFigureType() == Figure::FigureType::Group) {
+			Group * group = dynamic_cast<Group*>(figures.at(count)) ;
+			for each (Figure * figure in group->getGroup()) {
+				tobePopped.push_back(figure->clone());
+			}
+			Figure * f = figures.at(count);
+			figures.erase(figures.begin() + count);
+			delete f;
+		}
+		else {
+			count++;
+		}
+	}
+	for each (Figure* f in tobePopped) {
+		figures.push_back(f);
+	}
+	// Redraw window. This will call the draw method.
+	cview->RedrawWindow();
+}
+
+void Drawing::deleteGroup(CView* cview){
+	vector <Figure *> tobePopped;
+	std::vector<int>::size_type count = 0;
+	while (count < figures.size()) {
+		if (figures.at(count)->isSelected() && figures.at(count)->getFigureType() == Figure::FigureType::Group) {
+			Group * group = dynamic_cast<Group*>(figures.at(count));
+			for each (Figure * figure in group->getGroup()) {
+				tobePopped.push_back(figure->clone());
+			}
+			Figure * f = figures.at(count);
+			figures.erase(figures.begin() + count);
+			delete f;
+		}
+		else {
+			count++;
+		}
+	}
+	// Redraw window. This will call the draw method.
+	cview->RedrawWindow();
+}
+
+void Drawing::setColor(CView* cview, COLORREF color) {
+	for (unsigned i = 0; i < this->figures.size(); i++) {
+		if (figures.at(i)->isSelected()) {
+			figures.at(i)->setColor(color);
+		}
+	}
+	currentColor = color;
+
+	cview->RedrawWindow();
+}
+
+void Drawing::CopyToClipBoard(CView* cview){
+	this->clipboard.clear();
+	for (unsigned i = 0; i < this->figures.size(); i++) {
+		if (figures.at(i)->isSelected()) {
+			this->clipboard.push_back(figures.at(i)->clone());
+		}
+	}
+}
+
+void Drawing::Serialize(CArchive& ar)
+{
+	if (ar.IsStoring())
+	{
+		ar << figures.size();
+		for each (Figure * f in figures) {
+			ar << f;
+		}
+	}
+	else
+	{
+		int size = 0;
+		Figure * f;
+		ar >> size;
+		for (int i = 0; i < size; i++) {
+			ar >> f;
+			figures.push_back(f);
+		}
+
 	}
 }
 
@@ -352,14 +446,14 @@ void Drawing::PasteFromClipBoard(CView* cview){
 	Figure* f;
 	for (unsigned i = 0; i < this->clipboard.size(); i++) {
 		f = this->clipboard.at(i);
-		if (f->getFigureType == "Line") {
-			Line * l = f->clone();
+		//if (f->getFigureType() == Figure::FigureType::Line) {
+			this->figures.push_back(f->clone());
 
 			
-		}
-		this->figures.push_back(this->clipboard.at(i));
-		fprintf(stderr, "Paste?\n");
+		//}
+			
 	}
+	
 	cview->RedrawWindow();
 }
 

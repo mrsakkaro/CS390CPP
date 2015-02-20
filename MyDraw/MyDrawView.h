@@ -56,6 +56,9 @@ public:
 	afx_msg void OnFigureGroup();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditPaste();
+	afx_msg void OnGroupCreate();
+	afx_msg void OnGroupDegroup();
+	afx_msg void OnGroupDeletegroup();
 };
 
 #ifndef _DEBUG  // debug version in MyDrawView.cpp

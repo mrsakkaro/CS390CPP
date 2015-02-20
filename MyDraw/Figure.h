@@ -28,11 +28,15 @@ using namespace std;
 
 // Defines a generic figure. 
 // Other classes like Line, Rectangle, Circle etc. Inherit from Figure.
-class Figure
+class Figure : public CObject
 {
 public:
 	// Figure type. You may need to add more types here
-	enum FigureType { Line, Rectangle, Oval, Text };
+	enum FigureType { Line, Rectangle, Oval, Text, Group};
+
+	COLORREF curColor;
+
+	DECLARE_SERIAL(Figure);
 	
 
 protected:
@@ -49,6 +53,7 @@ public:
 
 	// Constructor and destructor
 	Figure(FigureType figureType);
+	Figure();
 	Figure (const Figure & );
 	~Figure(void);
 
@@ -56,7 +61,7 @@ public:
 	virtual const vector<ControlPoint *> & getControlPoints();
 
 	// Draw figure. Implemented in subclasses.
-	virtual void draw(CDC* pDC) = 0;
+	virtual void draw(CDC* pDC) {};
 
 	// Draw figure with selected control points
 	virtual void drawWithControlPoints(CDC *pDC);
@@ -80,7 +85,7 @@ public:
 	virtual void selectControlPointsInArea(int x0, int y0, int x1, int y1);
 
 	// Return true if x,y is close to this figure so it can be selected
-	virtual bool isCloseTo(int x, int y) = 0;
+	virtual bool isCloseTo(int x, int y);
 
 	// Find the control point in this figure that encloses x,y
 	ControlPoint * findControlPoint(int x, int y);
@@ -94,6 +99,8 @@ public:
 	// If the perpendicular distance is beyond the line segment, it returns a large distance.
 	static double distancePointToLine(double x0, double y0, double x1, double y1, double x2, double y2);
 
-	
+	virtual Figure* clone() const;
+
+	virtual void setColor(COLORREF color);
 };
 

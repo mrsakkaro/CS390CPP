@@ -124,5 +124,15 @@ public:
 	void Drawing::CopyToClipBoard(CView* cview);
 
 	void Drawing::PasteFromClipBoard(CView* cview);
+
+	void Drawing::createGroup(CView* cview);
+
+	void Drawing::unGroup(CView* cview);
+
+	void Drawing::deleteGroup(CView* cview);
+
+	void Drawing::setColor(CView* cview, COLORREF color);
+
+	void Drawing::Serialize(CArchive& ar);
 };
 

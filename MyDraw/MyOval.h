@@ -6,6 +6,7 @@ class MyOval :
 public:
 	MyOval(int x0, int y0, int x1, int y1, COLORREF currentColor);
 	~MyOval();
+	DECLARE_SERIAL(MyOval);
 
 	// Declaire current color variable
 	COLORREF curColor;
@@ -16,6 +17,8 @@ public:
 	// Return true if rectangle is close to coordinates (x,y)
 	bool isCloseTo(int x, int y);
 
-	MyOval* clone() const = 0;
+	void setColor(COLORREF color);
+
+	MyOval* clone() const;
 };
 

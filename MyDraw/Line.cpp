@@ -69,6 +69,10 @@ bool Line::isCloseTo(int x, int y)
 	return false;
 }
 
+void Line::setColor(COLORREF color) {
+	curColor = color;
+}
+
 Line* Line::clone() const {
 	return new Line(*this);
 }

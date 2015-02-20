@@ -58,6 +58,10 @@ bool MyRectangle::isCloseTo(int x, int y)
 	return false;
 }
 
+void MyRectangle::setColor(COLORREF color) {
+	curColor = color;
+}
+
 MyRectangle* MyRectangle::clone() const {
 	return new MyRectangle(*this);
 }

@@ -13,6 +13,8 @@ public:
 	Line(int x0, int y0, int x1, int y1, COLORREF currentColor);
 	~Line(void);
 
+	DECLARE_SERIAL(Line);
+
 	// Declaire current color variable
 	COLORREF curColor;
 
@@ -28,6 +30,8 @@ public:
 	// Return true if line is close to coordinates (x,y)
 	bool isCloseTo(int x, int y);
 
-	Line* clone() const = 0;
+	void setColor(COLORREF color);
+
+	Line* clone() const;
 };
 

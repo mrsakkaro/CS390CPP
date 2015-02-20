@@ -3,21 +3,21 @@
   Gustavo Rodriguez-Rivera
   All rights reserved.
 
-This work was developed by the author(s) at Purdue University
-during 2011.
+  This work was developed by the author(s) at Purdue University
+  during 2011.
 
-Redistribution and use in source and binary forms are permitted provided that
-this entire copyright notice is duplicated in all such copies.  No charge,
-other than an "at-cost" distribution fee, may be charged for copies,
-derivations, or distributions of this material without the express written
-consent of the copyright holders. Neither the name of the University, nor the
-name of the author may be used to endorse or promote products derived from
-this material without specific prior written permission.
+  Redistribution and use in source and binary forms are permitted provided that
+  this entire copyright notice is duplicated in all such copies.  No charge,
+  other than an "at-cost" distribution fee, may be charged for copies,
+  derivations, or distributions of this material without the express written
+  consent of the copyright holders. Neither the name of the University, nor the
+  name of the author may be used to endorse or promote products derived from
+  this material without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
-*/
+  THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED
+  WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+  MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
+  */
 
 #include "StdAfx.h"
 
@@ -25,20 +25,37 @@ MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
 #include "Figure.h"
 #include "ControlPoint.h"
 
+IMPLEMENT_SERIAL(Figure, CObject, 1);
+
 const double Figure::smallDistance = 10;
 
+
 // Constructor and destructor
-Figure::Figure(FigureType figureType) 
+Figure::Figure(FigureType figureType)
 {
 	this->figureType = figureType;
 }
 
-Figure::Figure(const Figure & virt) {
+Figure::Figure() {
+}
 
+Figure::Figure(const Figure & virt) {
+	figureType = virt.figureType;
+	curColor = virt.curColor;
+	//figureColor = virt.figureColor;
+
+	for (int i = 0; i < virt.controlPoints.size(); i++) {
+		ControlPoint * cp = virt.controlPoints[i];
+		ControlPoint * copy = new ControlPoint(this, cp->getX(), cp->getY());
+		controlPoints.push_back(copy);
+	}
 }
 
 Figure::~Figure(void)
 {
+}
+
+void Serialize(CArchive& archive) {
 }
 
 // Get/Set id of this figure
@@ -178,4 +195,6 @@ double Figure::distancePointToLine(double x0, double y0, double x1, double y1, d
 	return dist;
 }
 
-
+void Figure::setColor(COLORREF color) {
+	curColor = color;
+}

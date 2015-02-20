@@ -36,6 +36,9 @@ BEGIN_MESSAGE_MAP(CMyDrawView, CView)
 	ON_COMMAND(ID_FIGURE_GROUP, &CMyDrawView::OnFigureGroup)
 	ON_COMMAND(ID_EDIT_COPY, &CMyDrawView::OnEditCopy)
 	ON_COMMAND(ID_EDIT_PASTE, &CMyDrawView::OnEditPaste)
+	ON_COMMAND(ID_GROUP_CREATE, &CMyDrawView::OnGroupCreate)
+	ON_COMMAND(ID_GROUP_DEGROUP, &CMyDrawView::OnGroupDegroup)
+	ON_COMMAND(ID_GROUP_DELETEGROUP, &CMyDrawView::OnGroupDeletegroup)
 END_MESSAGE_MAP()
 
 // CMyDrawView construction/destruction
@@ -170,28 +173,28 @@ void CMyDrawView::OnAddLine()
 void CMyDrawView::OnColorBlack()
 {
 	CMyDrawDoc* pDoc = GetDocument();
-	pDoc->drawing.currentColor = RGB(0, 0, 0);
+	pDoc->drawing.setColor(this, RGB(0, 0, 0));
 }
 
 
 void CMyDrawView::OnColorRed()
 {
 	CMyDrawDoc* pDoc = GetDocument();
-	pDoc->drawing.currentColor = RGB(255, 0, 0);
+	pDoc->drawing.setColor(this, RGB(255, 0, 0));
 }
 
 
 void CMyDrawView::OnColorBlue()
 {
 	CMyDrawDoc* pDoc = GetDocument();
-	pDoc->drawing.currentColor = RGB(0, 0, 255);
+	pDoc->drawing.setColor(this, RGB(0, 0, 255));
 }
 
 
 void CMyDrawView::OnColorGreen()
 {
 	CMyDrawDoc* pDoc = GetDocument();
-	pDoc->drawing.currentColor = RGB(0, 255, 0);
+	pDoc->drawing.setColor(this, RGB(0, 255, 0));
 }
 
 
@@ -213,4 +216,25 @@ void CMyDrawView::OnEditPaste()
 {
 	CMyDrawDoc* pDoc = GetDocument();
 	pDoc->drawing.PasteFromClipBoard(this);
+}
+
+
+void CMyDrawView::OnGroupCreate()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.createGroup(this);
+}
+
+
+void CMyDrawView::OnGroupDegroup()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.unGroup(this);
+}
+
+
+void CMyDrawView::OnGroupDeletegroup()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.deleteGroup(this);
 }

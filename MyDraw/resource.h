@@ -24,13 +24,17 @@
 #define ID_COLOR_BLUE                   32785
 #define ID_COLOR_GREEN                  32786
 #define ID_FIGURE_GROUP                 32787
+#define ID_GROUP_CREATE                 32788
+#define ID_GROUP_DEGROUP                32789
+#define ID_GROUP_DELETEGROUP            32790
+#define ID_GROUP_DELETEGROUP32791       32791
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        131
-#define _APS_NEXT_COMMAND_VALUE         32788
+#define _APS_NEXT_COMMAND_VALUE         32792
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

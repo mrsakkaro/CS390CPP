@@ -51,6 +51,7 @@ void CMyDrawDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
+		drawing.Serialize(ar);
 		// TODO: add storing code here
 	}
 	else
