@@ -11,6 +11,7 @@ class Line : public Figure
 public:
 	// Constructor/destructor for a line
 	Line(int x0, int y0, int x1, int y1, COLORREF currentColor);
+	Line();
 	~Line(void);
 
 	DECLARE_SERIAL(Line);
@@ -31,6 +32,8 @@ public:
 	bool isCloseTo(int x, int y);
 
 	void setColor(COLORREF color);
+
+	void Serialize(CArchive & ar);
 
 	Line* clone() const;
 };

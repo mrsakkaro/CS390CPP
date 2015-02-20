@@ -1,6 +1,6 @@
 #include "Stdafx.h"
 #include "MyOval.h"
-
+IMPLEMENT_SERIAL(MyOval, Figure, 1);
 
 MyOval::MyOval(int x0, int y0, int x1, int y1, COLORREF currentColor)
 	:Figure(Figure::FigureType::Oval)
@@ -8,6 +8,10 @@ MyOval::MyOval(int x0, int y0, int x1, int y1, COLORREF currentColor)
 	controlPoints.push_back(new ControlPoint(this, x0, y0));
 	controlPoints.push_back(new ControlPoint(this, x1, y1));
 	curColor = currentColor;
+}
+
+MyOval::MyOval(){
+
 }
 
 MyOval::~MyOval()
@@ -91,6 +95,11 @@ bool MyOval::isCloseTo(int x, int y)
 void
 MyOval::setColor(COLORREF color){
 	curColor = color;
+}
+
+void
+MyOval::Serialize(CArchive & ar){
+	Figure::Serialize(ar);
 }
 
 MyOval* MyOval::clone() const {

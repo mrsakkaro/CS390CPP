@@ -37,6 +37,7 @@ Figure::Figure(FigureType figureType)
 }
 
 Figure::Figure() {
+	temp = 0;
 }
 
 Figure::Figure(const Figure & virt) {
@@ -55,7 +56,14 @@ Figure::~Figure(void)
 {
 }
 
-void Serialize(CArchive& archive) {
+void
+Figure::Serialize(CArchive & ar){
+	if (ar.IsStoring())
+	{
+		for (auto cp: controlPoints) {
+			ar << cp;
+		}
+	}
 }
 
 // Get/Set id of this figure
@@ -134,6 +142,10 @@ void Figure::selectControlPointsInArea(int x0, int y0, int x1, int y1)
 	}
 }
 
+bool Figure::isCloseTo(int x0, int x1) {
+	return FALSE;
+}
+
 // Find the control point in this figure that encloses x,y
 ControlPoint * Figure::findControlPoint(int x, int y)
 {
@@ -157,6 +169,10 @@ bool Figure::isInsideArea(int x0, int y0, int x1, int y1) {
 		}
 	}
 	return true;
+}
+
+Figure * Figure::clone() const {
+	return (new Figure(*this));
 }
 
 //

@@ -37,6 +37,8 @@ public:
 	COLORREF curColor;
 
 	DECLARE_SERIAL(Figure);
+
+	int temp;
 	
 
 protected:
@@ -102,5 +104,7 @@ public:
 	virtual Figure* clone() const;
 
 	virtual void setColor(COLORREF color);
+
+	virtual void Serialize(CArchive& ar);
 };
 

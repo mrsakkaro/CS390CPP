@@ -437,7 +437,7 @@ void Drawing::Serialize(CArchive& ar)
 			ar >> f;
 			figures.push_back(f);
 		}
-
+		
 	}
 }
 

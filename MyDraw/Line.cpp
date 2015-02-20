@@ -22,7 +22,7 @@ MERCHANTABILITY AND FITNESS FOR ANY PARTICULAR PURPOSE.
 #include "Line.h"
 #include <math.h>
 
-
+IMPLEMENT_SERIAL(Line, Figure, 1);
 
 
 // Constructor/destructor for a line
@@ -36,6 +36,10 @@ Line::Line(int x0, int y0, int x1, int y1, COLORREF currentColor)
 	xD = x1;
 	yO = y0;
 	yD = y1;
+}
+
+Line::Line() {
+
 }
 
 Line::~Line(void)
@@ -71,6 +75,10 @@ bool Line::isCloseTo(int x, int y)
 
 void Line::setColor(COLORREF color) {
 	curColor = color;
+}
+
+void Line::Serialize(CArchive & ar) {
+	Figure::Serialize(ar);
 }
 
 Line* Line::clone() const {

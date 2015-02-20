@@ -5,6 +5,7 @@ class MyOval :
 {
 public:
 	MyOval(int x0, int y0, int x1, int y1, COLORREF currentColor);
+	MyOval();
 	~MyOval();
 	DECLARE_SERIAL(MyOval);
 
@@ -18,6 +19,8 @@ public:
 	bool isCloseTo(int x, int y);
 
 	void setColor(COLORREF color);
+
+	void Serialize(CArchive & ar);
 
 	MyOval* clone() const;
 };

@@ -56,6 +56,7 @@ void CMyDrawDoc::Serialize(CArchive& ar)
 	}
 	else
 	{
+		drawing.Serialize(ar);
 		// TODO: add loading code here
 	}
 }

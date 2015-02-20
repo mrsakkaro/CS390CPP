@@ -1,12 +1,17 @@
 #include "StdAfx.h"
 #include "MyRectangle.h"
 
+IMPLEMENT_SERIAL(MyRectangle, Figure, 1);
+
 MyRectangle::MyRectangle(int x0, int y0, int x1, int y1, COLORREF currentColor)
 	:Figure(Figure::FigureType::Rectangle)
 {
 	controlPoints.push_back(new ControlPoint(this, x0, y0));
 	controlPoints.push_back(new ControlPoint(this, x1, y1));
 	curColor = currentColor;
+}
+
+MyRectangle::MyRectangle(){
 }
 
 MyRectangle::~MyRectangle(void)
@@ -56,6 +61,11 @@ bool MyRectangle::isCloseTo(int x, int y)
 	}
 
 	return false;
+}
+
+void
+MyRectangle::Serialize(CArchive & ar){
+	Figure::Serialize(ar);
 }
 
 void MyRectangle::setColor(COLORREF color) {
