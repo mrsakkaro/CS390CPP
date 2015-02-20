@@ -122,10 +122,12 @@
     <ClCompile Include="MyDrawView.cpp" />
     <ClCompile Include="MyOval.cpp" />
     <ClCompile Include="MyRectangle.cpp" />
+    <ClCompile Include="MyText.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="textInputBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildFrm.h" />
@@ -140,9 +142,11 @@
     <ClInclude Include="MyDrawView.h" />
     <ClInclude Include="MyOval.h" />
     <ClInclude Include="MyRectangle.h" />
+    <ClInclude Include="MyText.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="textInputBox.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\MyDraw.ico" />

@@ -12,6 +12,7 @@ MyRectangle::MyRectangle(int x0, int y0, int x1, int y1, COLORREF currentColor)
 }
 
 MyRectangle::MyRectangle(){
+	figureType = Rectangle;
 }
 
 MyRectangle::~MyRectangle(void)

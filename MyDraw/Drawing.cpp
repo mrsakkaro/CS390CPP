@@ -378,6 +378,37 @@ void Drawing::unGroup(CView* cview) {
 	cview->RedrawWindow();
 }
 
+void Drawing::moveForward(CView* cview) {
+	vector <Figure*> tobePopped;
+	std::vector<int>::size_type count = 0;
+	while (count < figures.size()){
+		if (figures.at(count)->isSelected()) {
+			tobePopped.push_back(figures.at(count));
+			figures.erase(figures.begin() + count);
+			count--;
+		}
+		count++;
+	}
+	figures.insert(figures.begin(), tobePopped.begin(), tobePopped.end());
+	cview->RedrawWindow();
+}
+
+void Drawing::moveBackward(CView * cview){
+	vector <Figure*> tobePopped;
+	std::vector<int>::size_type count = 0;
+	while (count < figures.size()){
+		if (figures.at(count)->isSelected()) {
+			tobePopped.push_back(figures.at(count));
+			figures.erase(figures.begin() + count);
+			count--;
+		}
+		count++;
+	}
+	figures.insert(figures.end(), tobePopped.begin(), tobePopped.end());
+	cview->RedrawWindow();
+}
+
+
 void Drawing::deleteGroup(CView* cview){
 	vector <Figure *> tobePopped;
 	std::vector<int>::size_type count = 0;

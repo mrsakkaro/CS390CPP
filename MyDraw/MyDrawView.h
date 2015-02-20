@@ -59,6 +59,8 @@ public:
 	afx_msg void OnGroupCreate();
 	afx_msg void OnGroupDegroup();
 	afx_msg void OnGroupDeletegroup();
+	afx_msg void OnFigureBringback();
+	afx_msg void OnFigureBringforth();
 };
 
 #ifndef _DEBUG  // debug version in MyDrawView.cpp

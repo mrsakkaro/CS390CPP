@@ -39,6 +39,8 @@ BEGIN_MESSAGE_MAP(CMyDrawView, CView)
 	ON_COMMAND(ID_GROUP_CREATE, &CMyDrawView::OnGroupCreate)
 	ON_COMMAND(ID_GROUP_DEGROUP, &CMyDrawView::OnGroupDegroup)
 	ON_COMMAND(ID_GROUP_DELETEGROUP, &CMyDrawView::OnGroupDeletegroup)
+	ON_COMMAND(ID_FIGURE_BRINGBACK, &CMyDrawView::OnFigureBringback)
+	ON_COMMAND(ID_FIGURE_BRINGFORTH, &CMyDrawView::OnFigureBringforth)
 END_MESSAGE_MAP()
 
 // CMyDrawView construction/destruction
@@ -237,4 +239,18 @@ void CMyDrawView::OnGroupDeletegroup()
 {
 	CMyDrawDoc* pDoc = GetDocument();
 	pDoc->drawing.deleteGroup(this);
+}
+
+
+void CMyDrawView::OnFigureBringback()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.moveForward(this);
+}
+
+
+void CMyDrawView::OnFigureBringforth()
+{
+	CMyDrawDoc* pDoc = GetDocument();
+	pDoc->drawing.moveBackward(this);
 }

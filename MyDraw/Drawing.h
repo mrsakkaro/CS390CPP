@@ -134,5 +134,9 @@ public:
 	void Drawing::setColor(CView* cview, COLORREF color);
 
 	void Drawing::Serialize(CArchive& ar);
+
+	void Drawing::moveForward(CView * cview);
+
+	void Drawing::moveBackward(CView * cview);
 };
 

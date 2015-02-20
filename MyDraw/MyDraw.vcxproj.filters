@@ -54,6 +54,12 @@
     <ClCompile Include="Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textInputBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildFrm.h">
@@ -99,6 +105,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textInputBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

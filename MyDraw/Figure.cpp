@@ -60,8 +60,20 @@ void
 Figure::Serialize(CArchive & ar){
 	if (ar.IsStoring())
 	{
+		ar << curColor;
 		for (auto cp: controlPoints) {
-			ar << cp;
+			ar << cp->getX();
+			ar << cp->getY();
+		}
+	}
+	else {
+		ar >> curColor;
+		for (int i = 0; i < 2; i++) {
+			int x, y = 0;
+			ar >> x;
+			ar >> y;
+			ControlPoint * cp = new ControlPoint(this, x, y);
+			controlPoints.push_back(cp);
 		}
 	}
 }
@@ -149,7 +161,7 @@ bool Figure::isCloseTo(int x0, int x1) {
 // Find the control point in this figure that encloses x,y
 ControlPoint * Figure::findControlPoint(int x, int y)
 {
-	for (unsigned i = 0; i < this->controlPoints.size(); i++) {
+	for (unsigned i = 0; i < controlPoints.size(); i++) {
 		ControlPoint * c = controlPoints.at(i);
 		if (c->isInside(x,y)) {
 			return c;
